@@ -49,6 +49,8 @@ const Auth = () => {
         callbackUrl: '/'
       });
 
+      console.log(response);
+
       if(response?.status === 200) {
         toast('Logged In Successfully!',
         {
@@ -60,22 +62,23 @@ const Auth = () => {
           },
         }
       );
+      } else {
+        toast(response?.error as string,
+          {
+            icon: '❌',
+            style: {
+              borderRadius: '10px',
+              background: '#333',
+              color: '#fff',
+            },
+          }
+        );
       }
 
-      toast(response?.error as string,
-      {
-        icon: '❌',
-        style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      }
-    );
+     
      
       router.push('/profiles');
     } catch (error) {
-      
       toast('Something Went Wrong!',
       {
         icon: '❌',
